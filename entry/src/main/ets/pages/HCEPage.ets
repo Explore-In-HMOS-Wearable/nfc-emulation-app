@@ -1,16 +1,17 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { promptAction } from '@kit.ArkUI';
 import { CommonFloats } from 'core/src/main/ets/constants/CommonFloats';
+import { PromptAction } from '@kit.ArkUI'
 
 @Component
 export struct HCEPage {
   @State status: string = 'NFC HCE not supported';
   @State isEmulating: boolean = false;
-  @State cardName: string = 'Access Card';
+  private cardName: string = 'Access Card';
   @State lastTransaction: string = '';
   @State showWarning: boolean = true;
-
   private floats: CommonFloats = new CommonFloats();
+  private uiContext: UIContext = this.getUIContext()
+  private promptAction: PromptAction = this.uiContext.getPromptAction()
 
   aboutToAppear() {
     this.checkNFCSupport();
@@ -27,13 +28,15 @@ export struct HCEPage {
   }
 
   private simulateEmulation(): void {
-    if (this.isEmulating) return;
+    if (this.isEmulating) {
+      return;
+    }
     this.isEmulating = true;
     this.status = 'Simulating...';
     this.showWarning = false;
     hilog.info(0x0000, 'HCE', 'Starting simulated card emulation');
     this.simulateTransactions();
-    promptAction.showToast({ message: 'Simulation started' });
+    this.promptAction.showToast({ message: 'Simulation started' });
   }
 
   private simulateTransactions(): void {
@@ -56,7 +59,7 @@ export struct HCEPage {
     this.status = 'Stopped';
     this.lastTransaction = '';
     hilog.info(0x0000, 'HCE', 'Stopped simulated card emulation');
-    promptAction.showToast({ message: 'Simulation stopped' });
+    this.promptAction.showToast({ message: 'Simulation stopped' });
   }
 
   build() {
@@ -65,7 +68,7 @@ export struct HCEPage {
         .width('100%')
         .height('100%')
         .backgroundColor('#121212')
-        .clip(new Circle({ width: '100%', height: '100%' }))
+        .clipShape(new Circle({ width: '100%', height: '100%' }))
 
       Scroll() {
         Column({ space: this.floats.smallMargin }) {
@@ -102,7 +105,12 @@ export struct HCEPage {
                 .fontWeight(FontWeight.Medium)
             }
             .justifyContent(FlexAlign.Center)
-            .padding({ top: 4, bottom: 4, left: 8, right: 8 })
+            .padding({
+              top: 4,
+              bottom: 4,
+              left: 8,
+              right: 8
+            })
             .backgroundColor('#1A1A1A')
             .borderRadius(1)
 
@@ -127,9 +135,7 @@ export struct HCEPage {
                   .fontWeight(FontWeight.Medium)
                   .textAlign(TextAlign.Center)
 
-                Text(
-                  "Wearables don't support full NFC HCE APIs."
-                )
+                Text(`Wearables don't support full NFC HCE APIs.`)
                   .fontSize(this.floats.normalFontSize)
                   .fontColor('#FFAB00')
                   .textAlign(TextAlign.Center)
@@ -186,7 +192,12 @@ export struct HCEPage {
             .borderRadius(6)
             .padding(this.floats.smallMargin)
             .margin({ top: this.floats.smallMargin, bottom: this.floats.mediumMargin })
-            .shadow({ radius: 8, color: '#000000', offsetX: 0, offsetY: 4 })
+            .shadow({
+              radius: 8,
+              color: '#000000',
+              offsetX: 0,
+              offsetY: 4
+            })
           }
           .width('100%')
           .alignItems(HorizontalAlign.Center)
@@ -200,7 +211,6 @@ export struct HCEPage {
               .enabled(!this.isEmulating)
               .opacity(this.isEmulating ? 0.7 : 1.0)
               .onClick(() => this.simulateEmulation())
-              // .transition({ type: TransitionType.All, curve: Curve.EaseInOut, duration: 200 })
 
             Button('Stop', { type: ButtonType.Capsule })
               .width(this.floats.buttonWidth)
@@ -210,7 +220,6 @@ export struct HCEPage {
               .enabled(this.isEmulating)
               .opacity(this.isEmulating ? 1.0 : 0.5)
               .onClick(() => this.stopSimulation())
-              // .transition({ type: TransitionType.All, curve: Curve.EaseInOut, duration: 200 })
           }
           .justifyContent(FlexAlign.End)
           .margin({ bottom: this.floats.mediumMargin, top: this.floats.smallMargin })

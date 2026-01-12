@@ -2,15 +2,16 @@
 
 # NFC HCE Simulator
 
-This is a wearable demo app that simulates **Host Card Emulation (HCE)** transactions. The project provides a **simulation-only environment** to test UI, interactions, and flow of card emulation features.
+This is a wearable demo app that simulates **Host Card Emulation (HCE)** transactions. The project provides a *
+*simulation-only environment** to test UI, interactions, and flow of card emulation features.
 
 # Preview
 
 <div>
-    <img src="./screenshots/Animation_1.gif" width="24%"/>
-    <img src="./screenshots/img_1.png" width="24%"/>
-    <img src="./screenshots/img_2.png" width="24%"/>
-    <img src="./screenshots/img_3.png" width="24%"/>
+<img src="./screenshots/Animation_1.gif" width="24%"/>
+<img src="./screenshots/img_1.png" width="24%"/>
+<img src="./screenshots/img_2.png" width="24%"/>
+<img src="./screenshots/img_3.png" width="24%"/>
 </div>
 
 # Use Cases
@@ -28,6 +29,7 @@ This is a wearable demo app that simulates **Host Card Emulation (HCE)** transac
 - **Libraries**: @kit.ArkUI, @kit.PerformanceAnalysisKit
 
 # Directory Structure
+
 ```
 entry/src/main/ets/
 |---entryability
@@ -41,7 +43,10 @@ entry/src/main/ets/
 |---viewmodels
 | |---SplashViewModel.ets
 ```
-# Supported Devices
+
+# Constraints and Restrictions
+
+## Supported Devices
 
 - Wearable devices running **HarmonyOS 4.0+**
 
@@ -51,7 +56,7 @@ entry/src/main/ets/
 - Transactions are pre-defined mock events.
 - Intended for **demo and UI/UX testing purposes**.
 
-# LICENSE
+# License
 
 NFC HCE Simulator is distributed under the terms of the MIT License.  
 See the [LICENSE](/LICENSE) for more information.

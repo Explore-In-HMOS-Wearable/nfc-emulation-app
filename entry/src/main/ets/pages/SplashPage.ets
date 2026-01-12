@@ -7,11 +7,6 @@ export struct SplashPage {
   coreModule: CoreModule = new CoreModule();
 
   aboutToAppear(): void {
-    //If you want to jump to dashboard you cant comment here
-    //and only run this.indexVm.navigateToPage('Dashboard');
-
-    // this.splashVm.splashStart();
-
     this.splashVm.navigateToPage('PinEntry');
   }
 
@@ -26,8 +21,10 @@ export struct SplashPage {
         })
     }.justifyContent(FlexAlign.Center).height('100%').width('100%').linearGradient({
       direction: GradientDirection.Bottom,
-      colors: [[this.coreModule.commonColors.baseBackgroundGradientStart, 0.0],
-        [this.coreModule.commonColors.baseBackgroundGradientEnd, 1],]
+      colors: [
+        [this.coreModule.commonColors.baseBackgroundGradientStart, 0.0],
+        [this.coreModule.commonColors.baseBackgroundGradientEnd, 1]
+      ]
     })
   }
 }

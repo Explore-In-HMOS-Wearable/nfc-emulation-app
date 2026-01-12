@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.hmosdemos.samplenfcreading",
+    "bundleName": "com.hmosdemos.wearable.nfc_emulation_app",
     "vendor": "hmosdemos",
     "versionCode": 1000000,
     "versionName": "1.0.0",

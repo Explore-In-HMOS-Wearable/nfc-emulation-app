@@ -14,7 +14,7 @@ export class SplashViewModel extends BaseViewModel {
     });
 
     // in upper method there can be inital operation like fetching device info from backend
-    // if everything fetched successfully it will dashboard
+    // when everything fetched successfully it will dashboard
     // So Its just a simulation
     if (result) {
       this.navigateToPage('Dashboard');

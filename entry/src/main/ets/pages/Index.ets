@@ -1,6 +1,6 @@
 import { CoreModule } from 'core';
 import { SplashPage } from './SplashPage';
-import {HCEPage} from './HCEPage'
+import { HCEPage } from './HCEPage'
 
 @Entry
 @Component
@@ -27,8 +27,10 @@ struct Index {
     }
     .linearGradient({
       direction: GradientDirection.Bottom,
-      colors: [[this.coreModule.commonColors.baseBackgroundGradientStart, 0.0],
-        [this.coreModule.commonColors.baseBackgroundGradientEnd, 1],]
+      colors: [
+        [this.coreModule.commonColors.baseBackgroundGradientStart, 0.0],
+        [this.coreModule.commonColors.baseBackgroundGradientEnd, 1]
+      ]
     })
     .navDestination(this.routeMap)
     .ignoreLayoutSafeArea()
